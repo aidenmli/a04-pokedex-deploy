@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { Pokedex } from "@/data/models/pokedex";
+import PokemonIcon from "@/components/PokemonIcon";
 import { formatPokemonName } from "@/utils/flavor-text-formatter";
 
 const PAGE_SIZE = 50;
@@ -78,12 +79,15 @@ export default function Home() {
                 >
                   <Link
                     href={`/pokemon/${pokemon.name}`}
-                    className="flex flex-1 flex-col px-3 py-2 hover:bg-red-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-red-600"
+                    className="flex flex-1 items-center gap-2 px-3 py-2 hover:bg-red-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-red-600"
                   >
-                    <span className="font-mono text-xs text-neutral-500">
-                      #{getId(pokemon.url)}
+                    <PokemonIcon name={pokemon.name} />
+                    <span className="flex flex-col">
+                      <span className="font-mono text-xs text-neutral-500">
+                        #{getId(pokemon.url)}
+                      </span>
+                      <span className="font-semibold">{displayName}</span>
                     </span>
-                    <span className="font-semibold">{displayName}</span>
                   </Link>
                   <button
                     type="button"
